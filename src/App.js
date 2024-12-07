@@ -7,7 +7,7 @@ function App() {
     customerName: "",
     customerAddress: "",
     items: [{ name: "", quantity: 1, price: 0 }],
-    payAmount: 0,  // Payment Amount the user enters
+    payAmount: 0,
   });
 
   const invoiceRef = useRef(); // Reference for the invoice
@@ -94,36 +94,40 @@ function App() {
               ></textarea>
             </div>
           </div>
-          
         </div>
 
         {/* Items Section */}
         <div className="mb-8">
           <h2 className="text-xl font-semibold text-gray-700 mb-4">Items</h2>
           {formData.items.map((item, index) => (
-            <div key={index} className="flex items-center gap-4 mb-4">
-              
-              <input
-                type="text"
-                placeholder="Item Name"
-                className="border rounded-md p-2 flex-1"
-                value={item.name}
-                onChange={(e) => handleInputChange(index, "name", e.target.value)}
-              />Quantity
-              <input
-                type="number"
-                placeholder="Quantity"
-                className="border rounded-md p-2 w-24"
-                value={item.quantity}
-                onChange={(e) => handleInputChange(index, "quantity", Number(e.target.value))}
-              />Price
-              <input
-                type="number"
-                placeholder="Price"
-                className="border rounded-md p-2 w-28"
-                value={item.price}
-                onChange={(e) => handleInputChange(index, "price", Number(e.target.value))}
-              />
+            <div key={index} className="flex flex-wrap gap-4 mb-4">
+              <div className="flex-1">
+                <input
+                  type="text"
+                  placeholder="Item Name"
+                  className="w-full border rounded-md p-2"
+                  value={item.name}
+                  onChange={(e) => handleInputChange(index, "name", e.target.value)}
+                />
+              </div>
+              <div className="w-1/4">
+                <input
+                  type="number"
+                  placeholder="Quantity"
+                  className="w-full border rounded-md p-2"
+                  value={item.quantity}
+                  onChange={(e) => handleInputChange(index, "quantity", Number(e.target.value))}
+                />
+              </div>
+              <div className="w-1/4">
+                <input
+                  type="number"
+                  placeholder="Price"
+                  className="w-full border rounded-md p-2"
+                  value={item.price}
+                  onChange={(e) => handleInputChange(index, "price", Number(e.target.value))}
+                />
+              </div>
             </div>
           ))}
           <button
@@ -140,7 +144,7 @@ function App() {
           <p className="mb-1"><strong>Customer Name:</strong> {formData.customerName}</p>
           <p className="mb-4"><strong>Address:</strong> {formData.customerAddress}</p>
 
-          <table className="w-full border-collapse border border-gray-200 text-left">
+          <table className="w-full border-collapse border border-gray-200 text-left table-auto">
             <thead>
               <tr className="bg-gray-100">
                 <th className="border border-gray-300 p-2">Item</th>
@@ -180,16 +184,16 @@ function App() {
         </div>
 
         {/* Action Buttons */}
-        <div className="mt-6 flex justify-end gap-4">
+        <div className="mt-6 flex flex-wrap justify-end gap-4">
           <button
             onClick={downloadPDF}
-            className="bg-green-500 text-white py-2 px-4 rounded-md"
+            className="bg-green-500 text-white py-2 px-4 rounded-md w-full sm:w-auto"
           >
             Download as PDF
           </button>
           <button
             onClick={shareInvoice}
-            className="bg-blue-500 text-white py-2 px-4 rounded-md"
+            className="bg-blue-500 text-white py-2 px-4 rounded-md w-full sm:w-auto"
           >
             Share Invoice
           </button>
